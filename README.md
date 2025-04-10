@@ -1,5 +1,5 @@
 # Ex02 Django ORM Web Application
-## 212224040355
+## Reg no: 212224040355
 ## Date: 10.04.2025
 
 ## AIM
