@@ -1,10 +1,13 @@
 # Ex02 Django ORM Web Application
 ## Reg no: 212224040355
-## Date: 10.04.2025
+## Date: 16.04.2025
 
 ## AIM
 To develop a Django application to store and retrieve data from a Movies Database using Object Relational Mapping(ORM).
 
+## Entity Relationship Diagram
+
+![alt text](<vaishu/vaishu/Screenshot 2025-04-16 210911.png>)
 
 ## DESIGN STEPS
 
@@ -25,28 +28,36 @@ Execute Django admin and create details for 10 books
 admin.py
 
 from django.contrib import admin
-from .models import Employee,EmployeeAdmin
-admin.site.register(Employee,EmployeeAdmin)
+from .models import Movie
+
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ('title', 'genre', 'director', 'release_date', 'rating')
+    list_filter = ('genre', 'release_date', 'rating')
+    search_fields = ('title', 'director', 'genre')
+    ordering = ('-release_date',)
 
 models.py
 
 from django.db import models
-from django.contrib import admin
-class Employee (models.Model):
-    eid=models.CharField(max_length=20,help_text="Employee ID")
-    name=models.CharField(max_length=100)
-    salary=models.IntegerField()
-    age=models.IntegerField()
-    email=models.EmailField()
 
-class EmployeeAdmin(admin.ModelAdmin):
-    list_display=('eid','name','salary','age','email')
+class Movie(models.Model):
+    title = models.CharField(max_length=200)
+    genre = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
+    release_date = models.DateField()
+    duration_minutes = models.PositiveIntegerField()
+    rating = models.DecimalField(max_digits=3, decimal_places=1)  # e.g., 8.5
+    description = models.TextField(blank=True, null=True)
+
+    def _str_(self):
+        return f"{self.title} ({self.release_date.year})"
 ```
 
 
 ## OUTPUT
 
-![alt text](<Screenshot 2025-04-09 230733.png>)
+![alt text](<vaishu/Screenshot 2025-04-16 143908.png>)
 
 
 ## RESULT
