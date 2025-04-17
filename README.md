@@ -58,7 +58,7 @@ class Movie(models.Model):
 
 ## OUTPUT
 
-![alt text](<vaishu/Screenshot 2025-04-16 143908.png>)
+![alt text](<Screenshot 2025-04-16 143908.png>)
 
 
 ## RESULT
